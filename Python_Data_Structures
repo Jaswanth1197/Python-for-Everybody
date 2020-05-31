@@ -1,0 +1,21 @@
+name = input("Enter file:")
+if len(name) < 1 : name = "mbox-short.txt"
+handle = open(name)
+
+hist = dict()
+lst = list()
+for lines in handle:
+    if lines.startswith('From '):
+        word = lines.split()
+        word = word[5]
+        word = word.split(':')
+        add = word[0]
+        hist[add] = hist.get(add,0) + 1
+        
+for hour,count in hist.items():
+    lst.append( (hour,count) )
+
+lst.sort()
+for hour,count in lst:
+    print(hour,count)
+    
