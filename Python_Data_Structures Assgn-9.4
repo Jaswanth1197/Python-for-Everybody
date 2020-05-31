@@ -1,0 +1,19 @@
+name = input("Enter file:")
+handle = open(name)
+
+hist = dict()
+for lines in handle:
+    if lines.startswith('From '):
+        words  = lines.split()
+        add = words[1]        
+        hist[add] = hist.get(add,0) + 1
+        
+            
+maxsender = None
+maxvalue = None
+for word,count in hist.items():
+     if count > maxvalue:
+        maxsender = word
+        maxvalue = count
+       
+print(maxsender,maxvalue)
